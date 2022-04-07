@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<h2>Door Details :</h2>
+<div ng-controller="DoorsController">
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <table cellpadding="12" class="table table-bordered table-hover">
+        <tr>
+            
+            <td>
+                <b>Door Name</b>
+            </td>
+            <td>
+                <b>Closed?</b>
+            </td>
+            <td>
+                <b>Locked?</b>
+            </td>
+            <td>
+                <b>Manage</b>
+            </td>
+        </tr>
+        <tr >
+            
+            
+            <td>
+                <input type="text" ng-model="new_door.GivenName" />
+            </td>
+
+            <td>
+                <input ng-disabled="new_door.IsLocked" type="checkbox" ng-model="new_door.IsClosed" />
+            </td>
+
+            <td>
+                <input ng-disabled="!new_door.IsClosed" type="checkbox" ng-model="new_door.IsLocked" />
+            </td>
+
+            <td>
+
+
+                <button type="button" value="Add Door" ng-click="AddDoor(new_door)">Add Door </button>
+            </td>
+        </tr>
+    </table>
+
+
+    
+    <div id="dvDoorDetails">
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+                <td>
+                    <b>Id</b>
+                </td>
+                <td>
+                    <b>Door Name</b>
+                </td>
+                <td>
+                    <b>Closed?</b>
+                </td>
+                <td>
+                    <b>Locked?</b>
+                </td>
+                <td>
+                    <b>Manage</b>
+                </td>
+            </tr>
+            <tr ng-repeat="stu in doors">
+                <td>
+
+                    {{stu.Id}}
+
+
+                </td>
+                
+                <td>
+                    <input type="text" ng-model="stu.GivenName" />
+                </td>
+
+                <td>
+                    <input ng-disabled="new_door.IsLocked" type="checkbox" ng-model="stu.IsClosed" />
+                </td>
+
+                <td>
+                    <input ng-disabled="!new_door.IsClosed" type="checkbox" ng-model="stu.IsLocked" />
+                </td>
+
+                <td>
+
+
+                    <button type="button" ng-click="UpdateDoor(stu)">Update</button>
+                    <button type="button" ng-click="deleteDoor(stu,$index)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="dvAddDoor" ng-show="dvDoor">
+        <p class="dvTask">{{Action}} New Door</p>
+        <table>
+            <tr>
+                <td>Name : </td>
+                <td>
+                    <input type="text" id="txtName" ng-model="door.GivenName" />
+                </td>
+            </tr>
+            <tr>
+                <td>Email : </td>
+                <td>
+                    <input type="checkbox" id="txtEmail" ng-model="door.IsCLosed" />
+                </td>
+            </tr>
+            <tr>
+                <td>Address : </td>
+                <td>
+                    <input type="checkbox" id="txtAddress" ng-model="door.IsLocked" />
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit" ng-click="AddDoor(door)" />
+    </div>
+</div>  
